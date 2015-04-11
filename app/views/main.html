@@ -1,6 +1,20 @@
 <a id="top" href=""></a>
 <div>
-    <h4><span class="glyphicon glyphicon-sunglasses"></span> <b>Find Events Hapening</b></h4>
+  <h3><span class="glyphicon glyphicon-sunglasses"></span> 
+    <b>Find 
+      <div class="btn-group">
+        <button class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+          <b>Events <span class="caret"></span></b>
+        </button> 
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="">Job Info Sessions</a></li>
+          <li><a href="">Performances</a></li>
+          <li><a href="">Something else here</a></li>
+          <li class="divider"></li>
+          <li><a href="">All Events</a></li>
+        </ul>
+      </div>
+  Hapening</b></h3>
     <div class="btn-group" role="group">
         <button ng-click="showToday()" class="btn btn-default" ng-class="time == 'today' ? 'active' : ''" >Today</button>
         <button ng-click="showThisWeek()" class="btn btn-default" ng-class="time == 'week' ? 'active' : ''">This Week</button>
