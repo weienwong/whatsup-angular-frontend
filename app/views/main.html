@@ -1,47 +1,67 @@
 <a id="top" href=""></a>
-<div>
-  <h3><span class="glyphicon glyphicon-sunglasses"></span> 
-    <b>Find 
-      <div class="btn-group">
-        <button class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
-          <b>Events <span class="caret"></span></b>
-        </button> 
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="">Job Info Sessions</a></li>
-          <li><a href="">Performances</a></li>
-          <li><a href="">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="">All Events</a></li>
-        </ul>
-      </div>
-  Hapening</b></h3>
-    <div class="btn-group" role="group">
-        <button ng-click="showToday()" class="btn btn-default" ng-class="time == 'today' ? 'active' : ''" >Today</button>
-        <button ng-click="showThisWeek()" class="btn btn-default" ng-class="time == 'week' ? 'active' : ''">This Week</button>
-        <button ng-click="showThisMonth()" class="btn btn-default" ng-class="time == 'month' ? 'active' : ''">This Month</button>
-        <button ng-click="showLater()" class="btn btn-default" ng-class="time == 'later' ? 'active' : ''">Later On</button>
+
+<!--div class="jumbotron">
+  <h1>WhatsUp</h1>
+    <p>
+      <b>WhatsUp</b> is an event discovery platform
+    </p>
+</div-->
+<div class="panel panel-default">
+  <div class="panel-body" style="padding-bottom: 5px; padding-top: 5px;">
+
+    <div class="page-header" style="margin-top: 0px;">
+      <h1>WhatsUp <small> find events</small> </h1>
     </div>
-    <br>
-    <br>
-    <div class="row">
-      <div class="col-md-9 col-sm-9 col-xs-9">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search by Event Name / Department" ng-model="eventName">
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-search"></span>
-          </span>
+    <form class="form-horizontal">
+      <div class="form-group" style="margin-bottom:5px;">
+        <label class="col-md-4 col-sm-4 col-xs-5"><h4><b>Event type: </b></h4></label>       
+        <div class="col-md-8 col-sm-8 col-xs-6 btn-group">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{categoryToDisplay}} <span class="caret"></span>
+          </button> 
+          <ul class="dropdown-menu" role="menu" >
+              <li ng-repeat="category in event_categories_options">
+                <a href="" ng-click="selectEventCategory(category)">{{category.label}}</a>
+              </li>
+          </ul>
         </div>
       </div>
-    </div>
-  <br>
+      <div class="form-group" style="margin-bottom:5px;">
+        <label class="col-md-4 col-sm-4 col-xs-5" for=""><h4><b>Hapening: </b></h4></label>   
+        <div class="col-md-8 col-sm-8 col-xs-7 btn-group">
+          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{timeToDisplay}} <span class="caret"></span>
+          </button> 
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="time in timeDropdown">
+              <a href="" ng-click="selectTime(time)">{{time.label}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group">
+
+          <div class="input-group" style="margin-left: 3%;margin-right: 3%;">
+            <input type="text" class="form-control" placeholder="Search by Event Name / Department" ng-model="eventName">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-search"></span>
+            </span>
+          </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
   
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <b>{{selected_event_category.label}} happening {{time_to_display}} at {{selected_university.label}}</b>
+        <b>{{categoryToDisplay}} happening {{timeToDisplay}} at {{selected_university.label}}</b>
       </div>
       <div class="panel-body" ng-switch="allEvents.length">
         <div ng-switch-when="0">
-          <b>No new events {{time_to_display}}!</b>
+          <b>No new events!</b>
         </div>
         <div ng-switch-default>
           <div ng-repeat="eventData in allEvents | filter: eventName "> 
